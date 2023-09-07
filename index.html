@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors Game</title>
+</head>
+<body>
+    <script>
+        let userWins = 0;
+        let computerWins = 0;
+        let ties = 0;
+
+        function computerChoice() {
+            const choices = ["R", "P", "S",];
+            const randomIndex = Math.floor(Math.random() * 3);
+            return choices[randomIndex];
+        }
+
+        function playGame() {
+            while (true) {
+                const userChoice = prompt("Enter R for Rock, P for Paper, or S for Scissors (or Cancel to quit):");
+
+                if (userChoice === null) {
+                    break;
+                }
+
+
+                if (userChoice !== "R" && userChoice !== "P" && userChoice !== "S" && userChoice !== "r"  && userChoice !== "p"  && userChoice !== "s") {
+                    alert("Invalid choice. Please choose R, P, or S.");
+                    continue;
+                }
+
+                const computer = computerChoice();
+
+                alert(`You chose: ${userChoice}\nComputer chose: ${computer}`);
+
+                if (userChoice === computer) {
+                    ties++;
+                    alert("It's a tie!");
+                } else if (
+                    (userChoice === "R" && computer === "S") ||
+                    (userChoice === "P" && computer === "R") ||
+                    (userChoice === "S"  && computer === "P")
+                   
+
+                ) {
+                    userWins++;
+                    alert("You win!");
+                } else {
+                    computerWins++;
+                    alert("Computer wins!");
+                }
+
+                alert(`Wins: ${userWins}\nTies: ${ties}\nLosses: ${computerWins}`);
+
+                const playAgain = confirm("Do you want to play again?");
+                if (!playAgain) {
+                    break;
+                }
+            }
+        }
+
+        playGame();
+    </script>
+</body>
+</html>
